@@ -1,5 +1,5 @@
-const CACHE_NAME = 'xolaraiz-survey-v1';
-const APP_SHELL = ['/', '/manifest.webmanifest', '/icon.svg'];
+const CACHE_NAME = 'xolaraiz-survey-v2';
+const APP_SHELL = ['./', './manifest.webmanifest', './icon.svg'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

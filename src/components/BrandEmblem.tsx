@@ -6,19 +6,21 @@ interface BrandEmblemProps {
   className?: string;
 }
 
+const BASE = import.meta.env.BASE_URL || '/';
+
 const EMBLEM_CONFIG = {
   xolaraiz: {
-    src: '/assets/aistudio/1795001766217_50c5de98.png',
+    src: `${BASE}assets/aistudio/1795001766217_50c5de98.png`,
     alt: 'XOLARAIZ™ — Save Bills, Save Beings, Going Net Zero',
     fallbackLabel: 'XOLARAIZ™',
   },
   xeco: {
-    src: '/assets/aistudio/XECO_Solar_45eb0890.jpg',
+    src: `${BASE}assets/aistudio/XECO_Solar_45eb0890.jpg`,
     alt: 'XECO Solar — Excellent & Economical Smart Solar Solutions',
     fallbackLabel: 'XECO Solar',
   },
   crixiszafe: {
-    src: '/assets/aistudio/CriXisZafe__b7ee4039.jpg',
+    src: `${BASE}assets/aistudio/CriXisZafe__b7ee4039.jpg`,
     alt: 'CriXisZafe™ — Caring for the Planet, Safeguarding Families',
     fallbackLabel: 'CriXisZafe™',
   },

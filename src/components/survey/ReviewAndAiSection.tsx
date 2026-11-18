@@ -47,12 +47,18 @@ export const ReviewAndAiSection: React.FC<ReviewAndAiSectionProps> = ({
 
   useEffect(() => {
     fetch('/api/ai/status')
-      .then((r) => r.json())
+      .then(async (r) => {
+        if (!r.ok || !r.headers.get('content-type')?.includes('application/json')) {
+          throw new Error('Static hosting');
+        }
+        return r.json();
+      })
       .then(setAiStatus)
       .catch(() =>
         setAiStatus({
           available: false,
-          notice: 'AI Assistant ไม่พร้อมใช้งานในโหมด Offline หรือยังไม่ได้เชื่อมต่อ API Server',
+          notice:
+            'AI Assistant ไม่พร้อมใช้งานบน Static Hosting (GitHub Pages) หรือโหมด Offline — ขั้นตอนสำรวจและตรวจทานหลักทำงานได้ครบถ้วน',
         })
       );
   }, []);

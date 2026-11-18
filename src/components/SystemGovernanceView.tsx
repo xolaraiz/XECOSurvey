@@ -21,12 +21,18 @@ export const SystemGovernanceView: React.FC<SystemGovernanceViewProps> = ({
   useEffect(() => {
     surveyRepository.getStorageHealth().then(setStorageHealth);
     fetch('/api/ai/status')
-      .then((r) => r.json())
+      .then(async (r) => {
+        if (!r.ok || !r.headers.get('content-type')?.includes('application/json')) {
+          throw new Error('Static hosting');
+        }
+        return r.json();
+      })
       .then(setAiStatus)
       .catch(() =>
         setAiStatus({
           available: false,
-          notice: 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ตรวจสอบสถานะ AI API ได้ (ทำงานแบบ Offline)',
+          notice:
+            'AI Assistant ไม่พร้อมใช้งานบน Static Hosting (เช่น GitHub Pages) หรือในโหมด Offline — ระบบสำรวจและรายงานหลักทำงานได้ครบถ้วน',
         })
       );
   }, []);
